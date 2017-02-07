@@ -1,0 +1,6 @@
+<h1>Gelatto</h1>
+<p>Find me in..... the next episode</p>
+<%= render 'users' %>
+<% if current_user %>
+  <%= link_to 'Albums', albums_path %>
+<% end %>

@@ -1,0 +1,21 @@
+<%= form_for([@album, @album.comments.build]) do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@album.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @album.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

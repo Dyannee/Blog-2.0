@@ -1,0 +1,11 @@
+<p>
+  <strong>Commenter: </strong>
+  <%= comment.user.first_name %>
+</p>
+<p>
+  <%= comment.comment %>
+</p>
+<% if current_user.id == comment.user.id %>
+  <%= link_to 'Delete comment', [comment.album, comment], method: :delete,
+                                                        data: {confirm: 'Sure?'}%>
+<% end %>

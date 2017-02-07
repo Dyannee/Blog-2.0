@@ -1,0 +1,27 @@
+<h2>All albums</h2>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<table>
+  <tr>
+    <th>Created by</th>
+    <th>Title</th>
+    <th>Body</th>
+    <th colspan=3>Actions</th>
+  </tr>
+  <% @albums.each do |f| %>
+  <tr>
+      <td><%= f.user.email %></td>
+      <td><%= f.title %></td>
+      <td><%= f.body %></td>
+      <td><%= link_to 'Show', album_path(f) %></td>
+      <% if current_user.id == f.user_id %>
+        <td><%= link_to 'Edit', edit_album_path(f) %></td>
+        <td><%= link_to 'Delete', album_path(f), method: :delete,
+                                                  data: { confirm: 'Sure?' }%></td>
+      <% end %>
+  </tr>
+  <% end %>
+</table>
+<%= link_to 'New Album', new_album_path %>
+<%= link_to 'Back', root_path %>
